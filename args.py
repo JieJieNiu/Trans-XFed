@@ -41,7 +41,7 @@ def args_parser():
     parser.add_argument('--mu', type=float, default=0.01, help='proximal term constant')
     parser.add_argument('--Trans_D', type=float, default=32, help='transformer depth')
     parser.add_argument('--Trans_H', type=float, default=3, help='transformer heads')
-    parser.add_argument('--loss', type=str, default='Focal', help='WCE weighted cross entropy or Focal or NLL')    
+    parser.add_argument('--loss', type=str, default='NLL', help='WCE weighted cross entropy or Focal or NLL')    
     parser.add_argument('--optimizer', type=str, default='SGD', help='type of optimizer')
     parser.add_argument('--file_name', type=dict, default=['data0','data1', 'data2','data3'],help='filename of different client')
     parser.add_argument('--samplesize', type=dict, default=[18368,19904,18816,13440],help='filename of different client')
