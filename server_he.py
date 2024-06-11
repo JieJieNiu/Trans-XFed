@@ -72,7 +72,7 @@ class FedProx:
             clients_list=list(clients_index)
             m = int(self.args.C * self.args.K)
             if self.args.fixmu == True:
-                self.mu=t/(self.args.r*1000)
+                self.mu=t/(self.args.r*100)
             else:
                 self.mu=self.args.mu            
             # dispatch the global model to all clients, choose the higher loss of rate C.
