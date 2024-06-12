@@ -42,3 +42,26 @@ torchsummary==1.5.1
 torchvision==0.9.1
 ```
 ---
+
+## Usages
+### Generate synthetic data
+First, use [CTGAN](https://github.com/JieJieNiu/TransCORALNet/tree/main/%20Synthetic%20target%20training%20and%20DataLoader) to generate synthetic data as target train data. Then use [dataloader] to prepare the training and testing dataset.
+
+### Training
+We offer several training/testing options as below:
+For batchsize (--batchsize, default 64)
+For training/testing epoch (--epoch, default 200)
+Communication rounds: 50
+
+
+example
+For  training and testing:
+```
+python TransXFed\main.py
+```
+
+
+### Explanation
+You can use [[[Integrated gradients](https://github.com/JieJieNiu/Trans-XFed/blob/main/intergrated_gradients1.py)] to interpret the results using saved best global model. 
+Also, the visualization of IG and attention scores can be seen here: [Visulization](https://github.com/JieJieNiu/Trans-XFed/blob/main/plotresults.py)
+
