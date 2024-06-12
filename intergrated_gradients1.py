@@ -60,12 +60,12 @@ class TransFed(nn.Module):
     
         return x
     
-check_point = torch.load('/Users/jolie/Desktop/project_Federated1.26/TransFed_18_last.pkl')
+check_point = torch.load('best.pkl')
 model=TransFed()
 model.load_state_dict(check_point['state_dict'])
 model.eval()    
 
-df= pd.read_csv('/Users/jolie/Desktop/project_Federated1.26/data/data0.csv')
+df= pd.read_csv('./data/data0.csv')
 inputs=torch.tensor(np.array(df.iloc[:,2:-1])).to(dtype=torch.float32)
 outputs=torch.tensor(np.array(df.iloc[:,-1])).to(dtype=torch.float32)
 dataset=TensorDataset(inputs,outputs)
@@ -80,7 +80,7 @@ all_labels = []
 with torch.no_grad():
     for inputs, outputs in data_loader:
         predicts = model(inputs)
-        probs = torch.softmax(predicts, dim=1)  # 计算每个类别的概率
+        probs = torch.softmax(predicts, dim=1)  
         all_probs.append(probs)
 
         
@@ -131,10 +131,10 @@ bq=bias[0:21]
 bk=bias[21:42]
 bv=bias[42:63]
 
-df1=pd.read_csv('/Users/jolie/Desktop/project_Federated1.26/data/data0.csv')
-df2=pd.read_csv('/Users/jolie/Desktop/project_Federated1.26/data/data1.csv')
-df3=pd.read_csv('/Users/jolie/Desktop/project_Federated1.26/data/data2.csv')
-df4=pd.read_csv('/Users/jolie/Desktop/project_Federated1.26/data/data3.csv')
+df1=pd.read_csv('./data/data0.csv')
+df2=pd.read_csv('./data/data1.csv')
+df3=pd.read_csv('./data/data2.csv')
+df4=pd.read_csv('./data/data3.csv')
 
 defaulting=pd.concat([df1[df1['Default_label']==1],df2[df2['Default_label']==1],df3[df3['Default_label']==1],df4[df4['Default_label']==1]])
 defaulting=np.array(defaulting.iloc[:,2:-1])
@@ -157,4 +157,3 @@ def plotattentionscore(data):
     return score
 
 score=plotattentionscore(nondefaulting)
-pd.DataFrame(score).to_csv('/Users/jolie/Desktop/score_nondefaulting.csv')
