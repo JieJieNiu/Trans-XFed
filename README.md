@@ -50,25 +50,40 @@ torchvision==0.9.1
 We offer several training options as below
 
 For method (--M):
+
 'TransFed': Trans-XFed
+
 'FedProx': FedProX
+
 'FedAvg':FedAvg
 
+
 For loss Function (--loss):
+
 'NLL': negative log-likelihood loss
+
 'WCE': cross entropy loss
+
 'Focal': Focal loss
 
 For clients selection strategy:
+
 'poc=True': performance-based clients selection
+
 'poc=True': random clients selection
 
+
 For proxmal term:
+
 'fixmu=True': epoch-varying parameters
+
 'fixmu=False': Determined parameters
 
+
 For batchsize (--batchsize, default 64)
+
 For training/testing epoch (--epoch, default 200)
+
 Communication rounds: 50
 
 
