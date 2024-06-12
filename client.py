@@ -98,12 +98,12 @@ def train(args,model,global_model,mu):
             label = label.to(args.device)
             y_pred = model(seq)
             preds_source = y_pred.data.max(1, keepdim=True)[1]
-            zes=Variable(torch.zeros(args.B).type(torch.LongTensor))#全0变量
-            ons=Variable(torch.ones(args.B).type(torch.LongTensor))#全1变量
-            train_correct01 = ((preds_source.squeeze(1)==zes)&(label==ons)).sum() #原标签为1，预测为 0 的总数
-            train_correct10 = ((preds_source.squeeze(1)==ons)&(label==zes)).sum() #原标签为0，预测为1 的总数
-            train_correct11 = ((preds_source.squeeze(1)==ons)&(label==ons)).sum() #原标签为1，预测为 1 的总数
-            train_correct00 = ((preds_source.squeeze(1)==zes)&(label==zes)).sum() #原标签为0，预测为 0 的总数
+            zes=Variable(torch.zeros(args.B).type(torch.LongTensor))
+            ons=Variable(torch.ones(args.B).type(torch.LongTensor))
+            train_correct01 = ((preds_source.squeeze(1)==zes)&(label==ons)).sum() 
+            train_correct10 = ((preds_source.squeeze(1)==ons)&(label==zes)).sum() 
+            train_correct11 = ((preds_source.squeeze(1)==ons)&(label==ons)).sum() 
+            train_correct00 = ((preds_source.squeeze(1)==zes)&(label==zes)).sum()
             FN += train_correct01
             FP += train_correct10
             TP += train_correct11
@@ -184,12 +184,12 @@ def test(args, TransFed, file_name):
             test_loss += loss # sum up batch loss
             test_pred = y_pred.data.max(1)[1]
             correct += test_pred.eq(target.data.view_as(test_pred)).cpu().sum()
-            zes=Variable(torch.zeros(args.B).type(torch.LongTensor))#全0变量
-            ons=Variable(torch.ones(args.B).type(torch.LongTensor))#全1变量
-            test_correct01 = ((test_pred==zes)&(target==ons)).sum() #原标签为1，预测为 0 的总数
-            test_correct10 = ((test_pred==ons)&(target==zes)).sum() #原标签为0，预测为1 的总数
-            test_correct11 = ((test_pred==ons)&(target==ons)).sum()#原标签为1，预测为 1 的总数
-            test_correct00 = ((test_pred==zes)&(target==zes)).sum()#原标签为0，预测为 0 的总数
+            zes=Variable(torch.zeros(args.B).type(torch.LongTensor))
+            ons=Variable(torch.ones(args.B).type(torch.LongTensor))
+            test_correct01 = ((test_pred==zes)&(target==ons)).sum() 
+            test_correct10 = ((test_pred==ons)&(target==zes)).sum()
+            test_correct11 = ((test_pred==ons)&(target==ons)).sum()
+            test_correct00 = ((test_pred==zes)&(target==zes)).sum()
             FN_test += test_correct01.item()
             FP_test += test_correct10.item()
             TP_test += test_correct11.item()
