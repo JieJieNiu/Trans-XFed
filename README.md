@@ -12,8 +12,10 @@ Chain Credit Assessment"
 
 The original Code from the paper can be found in this branch:[[Tran-XFed](https://github.com/JieJieNiu/Trans-XFed)]
 
+The server_he.py is the central server with homomopic encryption.
+The client.py is the local model training.
 
-To choose the baseline model, go to args.py 
+To choose the baseline model, prameters, clients' number, go to args.py 
 
 
 The best trained model from 50 communication round canbe download in this branch,  and use it directly, also the baseline models of FedProx and FedAvg can be download here: 
