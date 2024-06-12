@@ -65,3 +65,10 @@ python TransXFed\main.py
 You can use [[[Integrated gradients](https://github.com/JieJieNiu/Trans-XFed/blob/main/intergrated_gradients1.py)] to interpret the results using saved best global model. 
 Also, the visualization of IG and attention scores can be seen here: [Visulization](https://github.com/JieJieNiu/Trans-XFed/blob/main/plotresults.py)
 
+### Plot
+
+Creating similar plots as in the paper: 
+Using [rawgraphs](https://www.rawgraphs.io/) to create the following graph:
+
+Ingegrated gradients<img src='[ig_defaulting](https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_defaulting.png)' width='700'>
+<img src='[ig_nondefaulting](https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_nondefaulting.png)' width='700'>
