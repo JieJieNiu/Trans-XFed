@@ -152,7 +152,7 @@ class TransFed(nn.Module):
 
 
 
-checkpoint = torch.load('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/best.pkl')
+checkpoint = torch.load('best.pkl')
 model=TransFed()
 model.load_state_dict(checkpoint['state_dict'])
 weight=checkpoint['state_dict']['transformer.0.self_attn.in_proj_weight']
@@ -181,10 +181,10 @@ def plotattentionscore(data):
     return score
 
 
-df0=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data0.csv')
-df1=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data1.csv')
-df2=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data2.csv')
-df3=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data3.csv')
+df0=pd.read_csv('./data/data0.csv')
+df1=pd.read_csv('./data/data1.csv')
+df2=pd.read_csv('./data/data2.csv')
+df3=pd.read_csv('./data/data3.csv')
 
 defaulting=pd.concat([df0[df0['Default_label']==1],df1[df1['Default_label']==1],df2[df2['Default_label']==1],df3[df3['Default_label']==1]],axis=0)
 defaulting=defaulting.iloc[:,2:-1]
@@ -192,6 +192,5 @@ non_defaulting=pd.concat([df0[df0['Default_label']==0],df1[df1['Default_label']=
 non_defaulting=non_defaulting.iloc[:,2:-1]
 
 score_non=plotattentionscore(np.array(non_defaulting))
-pd.DataFrame(score_non).to_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/result/score_non.csv')
 score=plotattentionscore(np.array(defaulting))
-pd.DataFrame(score).to_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/result/score.csv')
+
