@@ -72,5 +72,19 @@ defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_d
 non-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_nondefaulting.png' width='700'>
 
 Attention score:
-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_defaulting.png' width='300'> 
-non-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_nondefaulting.png' width='300'> 
+defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_defaulting.jpg' width='300'> 
+non-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_nondefaulting.jpg' width='300'> 
+
+### Dataset
+The dataset are not open access due to the current data protocal.
+If you are interested in the dataset that we used in this paper please write an e-mail to: s.mehrkanoon@uu.nl and j.shi1@uu.nl 
+
+## Results
+### Model performance
+
+## Citation
+If you decide to cite our project in your paper or use our data, please use the following bibtex reference:
+
+```
+
+---
