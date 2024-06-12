@@ -15,7 +15,7 @@ from scipy.interpolate import make_interp_spline
 
 
 
-df=pd.read_csv('/Users/jolie/Desktop/non_default_results.csv')
+df=pd.read_csv('non_default_results.csv')
 
 
 def parallel_plot(df,cols,title,cmap='Spectral',spread=None,curved=0.05,curvedextend=0.1):
@@ -112,3 +112,86 @@ cols=df.columns[:]
 parallel_plot(df.iloc[:2000,:],cols,'non-defaulting')
 
 
+
+
+
+
+###attention
+import torch
+import torch.nn as nn
+import pandas as pd
+import numpy as np
+
+
+class TransFed(nn.Module):
+    def __init__(self):
+        super(TransFed, self).__init__()
+        self.len = 0
+        self.loss=0
+        self.transformer = nn.Sequential(
+            nn.TransformerEncoderLayer(d_model=21, nhead=3, dim_feedforward=32,batch_first=True),
+        )
+        self.classifer=nn.Sequential(
+            nn.Linear(21, 128),
+            nn.ReLU(inplace=True),
+            nn.Linear(128, 128),
+            nn.ReLU(inplace=True),
+            nn.Linear(128, 64),
+            nn.ReLU(inplace=True),
+            nn.Linear(64, 2),
+            )
+
+    def forward(self, data):
+        x=self.transformer(data)
+        x=self.classifer(x)
+
+    
+        return x
+
+
+
+
+
+checkpoint = torch.load('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/best.pkl')
+model=TransFed()
+model.load_state_dict(checkpoint['state_dict'])
+weight=checkpoint['state_dict']['transformer.0.self_attn.in_proj_weight']
+bias=checkpoint['state_dict']['transformer.0.self_attn.in_proj_bias']
+
+
+wq=weight[0:21]
+wk=weight[21:42]
+wv=weight[42:63]
+bq=bias[0:21]
+bk=bias[21:42]
+bv=bias[42:63]
+
+
+
+def plotattentionscore(data):
+    inputx=torch.tensor(data).to(dtype=torch.float32).unsqueeze(1)
+    q=inputx*wq+bq
+    k=inputx*wk+bk
+    att=torch.matmul(q,k.transpose(1,2))/np.sqrt(21)
+    att = torch.softmax(att, -1)
+    score = torch.zeros(21,21)
+    for i in range(len(att)):
+        score+=att[i]
+    score=np.array(score)
+    return score
+
+
+df0=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data0.csv')
+df1=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data1.csv')
+df2=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data2.csv')
+df3=pd.read_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/data/data3.csv')
+
+defaulting=pd.concat([df0[df0['Default_label']==1],df1[df1['Default_label']==1],df2[df2['Default_label']==1],df3[df3['Default_label']==1]],axis=0)
+defaulting=defaulting.iloc[:,2:-1]
+non_defaulting=pd.concat([df0[df0['Default_label']==0],df1[df1['Default_label']==0],df2[df2['Default_label']==0],df3[df3['Default_label']==0]],axis=0)
+non_defaulting=non_defaulting.iloc[:,2:-1]
+
+score_non=plotattentionscore(np.array(non_defaulting))
+pd.DataFrame(score_non).to_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/result/score_non.csv')
+score=plotattentionscore(np.array(defaulting))
+pd.DataFrame(score).to_csv('/Users/jolie/Desktop/2023_Utrecht/project_Federated/project_Federated1.26/result/score.csv')
