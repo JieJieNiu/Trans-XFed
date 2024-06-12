@@ -17,7 +17,7 @@ DEFAULT_DIR=os.getcwd()
 
 DATA_DIR = DEFAULT_DIR + os.path.sep + 'data' + os.path.sep
 MODEL_SAVE = DEFAULT_DIR + os.path.sep + 'ckpt' + os.path.sep
-MODEL_NAME="TransFed"
+MODEL_NAME="TransXFed"
 LOG_PATH=DEFAULT_DIR + os.path.sep + 'log'
 FIG_PATH = DEFAULT_DIR + os.path.sep + 'figure'
 clients = ['data' + str(i) for i in range(0, 4)]
