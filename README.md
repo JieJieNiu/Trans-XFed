@@ -69,8 +69,8 @@ defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_d
 non-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_nondefaulting.png' width='700'>
 
 Attention score:
-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_defaulting.jpg' width='300'> 
-non-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_nondefaulting.jpg' width='300'> 
+defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_defaulting.jpg' width='200'> 
+non-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_nondefaulting.jpg' width='200'> 
 
 ### Dataset
 The dataset are not open access due to the current data protocal.
