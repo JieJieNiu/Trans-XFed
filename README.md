@@ -65,8 +65,10 @@ Also, the visualization of IG and attention scores can be seen here: [Visulizati
 ### Plot
 Ingegrated gradients:
 
-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_defaulting.png' width='700'>
-non-defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_nondefaulting.png' width='700'>
+defaulting
+<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_defaulting.png' width='700'>
+non-defaulting
+<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/ig_nondefaulting.png' width='700'>
 
 Attention score:
 defaulting<img src='https://github.com/JieJieNiu/Trans-XFed/blob/main/image/att_defaulting.jpg' width='200'> 
