@@ -44,9 +44,6 @@ torchvision==0.9.1
 ---
 
 ## Usages
-### Generate synthetic data
-First, use [CTGAN](https://github.com/JieJieNiu/TransCORALNet/tree/main/%20Synthetic%20target%20training%20and%20DataLoader) to generate synthetic data as target train data. Then use [dataloader] to prepare the training and testing dataset.
-
 ### Training
 We offer several training/testing options as below:
 For batchsize (--batchsize, default 64)
