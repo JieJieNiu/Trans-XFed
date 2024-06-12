@@ -156,4 +156,5 @@ def plotattentionscore(data):
     sns.heatmap(score, cmap="YlGnBu",robust=False,xticklabels=columns,yticklabels=columns)
     return score
 
-score=plotattentionscore(nondefaulting)
+score_nondefaulting=plotattentionscore(nondefaulting)
+score_defulting=plotattentionscore(defaulting)
