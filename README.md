@@ -118,6 +118,25 @@ If you are interested in the dataset that we used in this paper please write an 
 ## Results
 ### Model performance
 
+| **Fed models** | **loss** | **best recall** $\uparrow$ | **best precision** $\uparrow$ | **best F1 scores** $\uparrow$ | **communication round** $\downarrow$ |
+| -------------- | -------- | -------------------------- | ----------------------------- | ---------------------------- | ------------------------------------ |
+|                | CE       | 0.8853                     | 0.5883                        | 0.7069                       | 20                                   |
+| Trans-XFed     | Focal    | 0.6059                     | _0.7102_                      | 0.6534                       | 13                                   |
+|                | NLL      | _0.8889_                   | 0.5961                        | _0.7137_                     | _10_                                 |
+|                |          |                            |                               |                              |                                      |
+|                | CE       | 0.8884                     | 0.5234                        | 0.6588                       | 42                                   |
+| FedProX        | Focal    | 0.6918                     | 0.4180                        | 0.5207                       | 34                                   |
+|                | NLL      | 0.8486                     | 0.5456                        | 0.6642                       | 36                                   |
+|                |          |                            |                               |                              |                                      |
+|                | CE       | 0.8719                     | 0.5916                        | 0.7049                       | 38                                   |
+| FedAvg         | Focal    | 0.6825                     | 0.6714                        | 0.6769                       | 20                                   |
+|                | NLL      | 0.8879                     | 0.5730                        | 0.6968                       | 36                                   |
+
+CE: cross entropy loss; Focal: Focal loss; NLL: negative log-likelihood loss
+
+
+
+
 ## Citation
 If you decide to cite our project in your paper or use our data, please use the following bibtex reference:
 
