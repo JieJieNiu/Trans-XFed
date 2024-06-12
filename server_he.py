@@ -80,7 +80,7 @@ class FedProx:
             
             #Choose clients
             if self.args.poc == True:
-                chosen_clients = self.power_of_choice(clients_list, clients_index, m)
+                chosen_clients = self.poc(clients_list, clients_index, m)
                 print(chosen_clients)
                 chosen_clients_list.append(chosen_clients)
             elif self.args.poc == False:
@@ -171,14 +171,12 @@ class FedProx:
 
         
     def dispatch(self, clients_list):
-        #将全局模型的参数分发给选中的客户端模型，以确保每个客户端在开始训练之前都具有最新的全局模型参数
         for j in clients_list:
             client_loss=[]
-            #代码使用 zip 函数同时迭代选中的客户端模型 self.nns[j] 的参数和全局模型 self.nn 的参数。这意味着对于每个客户端模型和全局模型都会迭代对应的参数。
             for old_params, new_params in zip(self.nns[j].parameters(), self.nn.parameters()):
                 old_params.data = new_params.data.clone()
     
-    def power_of_choice(self, clients_list, clients_index, m):
+    def poc(self, clients_list, clients_index, m):
         client_f1=[]
         clients = ['data' + str(i) for i in range(0, 4)]
         for j in clients_list:
@@ -192,23 +190,8 @@ class FedProx:
         print("chossen clients", chosen_clients)
         return chosen_clients
 
-    # def power_of_choice(self, clients_list, clients_index, m):
-    #     client_loss=[]
-    #     clients = ['data' + str(i) for i in range(0, 4)]
-    #     for j in clients_list:
-    #         model=self.nn
-    #         model.eval()
-    #         test_loss,_,_,F1_test=test(self.args, model, clients[j])
-    #         client_loss.append(test_loss)
-
-    #     sort_id=np.array(client_loss).argsort().tolist()
-    #     chosen_clients = list(np.array(clients_index)[sort_id][(self.args.K-m):])
-    #     print("chossen clients", chosen_clients)
-    #     return chosen_clients
 
 
-
-    #对选中的客户端模型进行训练，并将其更新为全局模型的最新参数
     def client_update(self,chosen_clients):
         self.losses=[]# update nn
         for j in chosen_clients:
