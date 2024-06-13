@@ -31,6 +31,11 @@ import pandas as pd
 '''
 nn：global model
 nns：local models
+server contains 5 steps. 1. global model dispatch parameters to local model.
+                         2. server choose clients to participant next round.
+                         3. choosen clients train model locally
+                         4. parameters are aggregated under homomorphic encryption.
+                         5. server decrypt the parameters and update the global model.
 '''
 
 def initialize(self):
